@@ -31,5 +31,32 @@ public class LeafProcessingTest {
         assertEquals(5, tree.maxBranchSumUsingStream());
         assertEquals(5, tree.maxBranchSumUsingLoop());
     }
+ 
+    @Test
+    public void testMaxValue() {
+        Leaf tree;
+
+        tree = reader.read("3; 2,5,4; 1,2; 3,7");
+        assertEquals(7, tree.maxValueUsingStream());
+        assertEquals(7, tree.maxValueUsingLoop());
+        
+        tree = reader.read("1; 1,2;");
+        assertEquals(2, tree.maxValueUsingStream());
+        assertEquals(2, tree.maxValueUsingLoop());
+        
+        tree = reader.read("1; 1,1; 1,1; 1,2");
+        assertEquals(2, tree.maxValueUsingStream());
+        assertEquals(2, tree.maxValueUsingLoop());
+
+        tree = reader.read("1; 1,1; 1,1; 1,1; 1,1; 1,1; 1,2");
+        assertEquals(2, tree.maxValueUsingStream());
+        assertEquals(2, tree.maxValueUsingLoop());
+        
+        tree = reader.read("1; 3,1; 1,1; 1,1; 1,1; 1,1; 1,2");
+        assertEquals(3, tree.maxValueUsingStream());
+        assertEquals(3, tree.maxValueUsingLoop());
+
+    }
+
     
 }

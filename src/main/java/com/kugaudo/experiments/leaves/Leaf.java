@@ -39,6 +39,38 @@ public class Leaf {
         }
         return value + (max == null ? 0 : max);
     }
+    
+    /**
+     * Finds a maximum value in a branch using recursive java stream
+     * @return
+     */
+    public int maxValueUsingStream() {
+        Optional<Integer> max = childs.stream()
+                .map(Leaf::maxValueUsingStream)
+                .reduce(Integer::max);
+        if (!max.isPresent() || value > max.get()) {
+            return value;
+        }
+        return max.get();
+    }
+
+    /**
+     * Finds a maximum value in a branch using recursive loop
+     * @return
+     */
+    public int maxValueUsingLoop() {
+        Integer max = null;
+        for (Leaf child : childs) {
+            int branchMax = child.maxValueUsingLoop();
+            if (max == null || branchMax > max) {
+                max = branchMax;
+            }
+        }
+        if (max == null || value > max) {
+            return value;
+        }
+        return max;
+    }
 
     public int getValue() {
         return value;
