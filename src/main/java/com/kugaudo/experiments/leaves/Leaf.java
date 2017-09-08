@@ -33,10 +33,10 @@ public class Leaf {
         if (childs.isEmpty()) {
             return value;
         }
-        int max = childs.get(0).maxBranchSumUsingLoop();
-        for (int i = 1; i < childs.size(); i++) {
-            int sum = childs.get(i).maxBranchSumUsingLoop();
-            if (sum > max) {
+        Integer max = null;
+        for (Leaf child : childs) {
+            int sum = child.maxBranchSumUsingLoop();
+            if (max == null || sum > max) {
                 max = sum;
             }
         }
