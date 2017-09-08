@@ -30,9 +30,6 @@ public class Leaf {
      * @return sum
      */
     public int maxBranchSumUsingLoop() {
-        if (childs.isEmpty()) {
-            return value;
-        }
         Integer max = null;
         for (Leaf child : childs) {
             int sum = child.maxBranchSumUsingLoop();
@@ -40,9 +37,9 @@ public class Leaf {
                 max = sum;
             }
         }
-        return value + max;
+        return value + (max == null ? 0 : max);
     }
-    
+
     public int getValue() {
         return value;
     }
