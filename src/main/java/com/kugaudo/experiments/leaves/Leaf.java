@@ -26,11 +26,10 @@ public class Leaf {
     }
 
     /**
-     * Finds a branch of multiple child tree with maximum value sum using a loop
+     * Finds a branch of multiple child tree with maximum value sum using recursive loop
      * @return sum
      */
     public int maxBranchSumUsingLoop() {
-        System.out.println(value);
         if (childs.isEmpty()) {
             return value;
         }
